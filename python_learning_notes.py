@@ -1,208 +1,208 @@
 # -*- coding: utf-8 -*-
 """
-Python 学习笔记 (Python Learning Notes)
+Python Learning Notes
 ========================================
-作者: jingwang1
-日期: 2026-02-27
-描述: Python 基础学习笔记，包含循环、数据结构、函数、内存管理等核心概念
+Author: jingwang1
+Date: 2026-02-27
+Description: Python fundamentals covering loops, data structures, functions, memory management, and more
 
-目录:
-1. 循环结构 (Loops)
-2. 控制语句 (Control Statements: pass, continue, break)
-3. 数据结构 (Data Structures)
-4. 集合操作 (Set Operations)
-5. 函数 (*args, **kwargs, lambda, 装饰器)
-6. 内存管理 (迭代器、浅拷贝、深拷贝)
-7. 文件操作 (File Operations)
-8. 异常处理 (Exception Handling)
-9. 模块导入 (Modules)
+Table of Contents:
+1. Loops
+2. Control Statements (pass, continue, break)
+3. Data Structures
+4. Set Operations
+5. Functions (*args, **kwargs, lambda, decorators)
+6. Memory Management (iterators, shallow copy, deep copy)
+7. File Operations
+8. Exception Handling
+9. Module Imports
 """
 
 # ============================================================================
-# 1. 循环结构 (Loops)
+# 1. Loops
 # ============================================================================
 
-# --- for 循环 ---
+# --- for loop ---
 print("=" * 50)
-print("1. 循环结构")
+print("1. Loops")
 print("=" * 50)
 
-# 基本 for 循环
-fruits = ["苹果", "香蕉", "橙子"]
+# Basic for loop
+fruits = ["apple", "banana", "orange"]
 for fruit in fruits:
     print(fruit)
 
-# range() 函数
+# range() function
 for i in range(5):        # 0, 1, 2, 3, 4
     print(i)
 
 for i in range(2, 8):     # 2, 3, 4, 5, 6, 7
     print(i)
 
-for i in range(0, 10, 2): # 0, 2, 4, 6, 8 (步长为2)
+for i in range(0, 10, 2): # 0, 2, 4, 6, 8 (step of 2)
     print(i)
 
-# --- while 循环 ---
+# --- while loop ---
 count = 0
 while count < 5:
     print(count)
     count += 1
 
-# --- enumerate() 同时获取索引和值 ---
-colors = ["红", "绿", "蓝"]
+# --- enumerate() - get both index and value ---
+colors = ["red", "green", "blue"]
 for index, color in enumerate(colors):
-    print(f"索引 {index}: {color}")
-# 输出:
-# 索引 0: 红
-# 索引 1: 绿
-# 索引 2: 蓝
+    print(f"Index {index}: {color}")
+# Output:
+# Index 0: red
+# Index 1: green
+# Index 2: blue
 
 
 # ============================================================================
-# 2. 控制语句: pass, continue, break
+# 2. Control Statements: pass, continue, break
 # ============================================================================
 """
-对比表:
+Comparison Table:
 ┌──────────┬────────────────────────────┬─────────────────┐
-│ 关键字    │ 作用                        │ 循环继续?       │
+│ Keyword  │ Function                   │ Loop continues? │
 ├──────────┼────────────────────────────┼─────────────────┤
-│ pass     │ 什么都不做，占位符           │ ✅ 继续执行下面代码 │
-│ continue │ 跳过本次循环剩余代码         │ ✅ 进入下一次迭代  │
-│ break    │ 完全退出循环                │ ❌ 立即退出循环   │
+│ pass     │ Does nothing, placeholder  │ ✅ Continue code │
+│ continue │ Skip remaining code        │ ✅ Next iteration│
+│ break    │ Exit loop completely       │ ❌ Exit loop     │
 └──────────┴────────────────────────────┴─────────────────┘
 """
 
 print("\n" + "=" * 50)
-print("2. 控制语句: pass, continue, break")
+print("2. Control Statements: pass, continue, break")
 print("=" * 50)
 
-# --- pass: 什么都不做，代码继续执行 ---
-print("\n--- pass 示例 ---")
+# --- pass: does nothing, code continues ---
+print("\n--- pass example ---")
 for i in range(5):
     if i == 2:
-        pass  # 什么都不做，但代码继续
+        pass  # Does nothing, but code continues
     print(f"i = {i}")
-# 输出: 0, 1, 2, 3, 4 (全部打印，包括2)
+# Output: 0, 1, 2, 3, 4 (all printed, including 2)
 
-# pass 常用于占位
+# pass is commonly used as a placeholder
 class MyClass:
-    pass  # 稍后实现
+    pass  # To be implemented later
 
 def my_function():
-    pass  # 稍后实现
+    pass  # To be implemented later
 
-# --- continue: 跳过本次，进入下一次迭代 ---
-print("\n--- continue 示例 ---")
+# --- continue: skip current iteration, go to next ---
+print("\n--- continue example ---")
 for i in range(5):
     if i == 2:
-        continue  # 跳过 i=2
+        continue  # Skip i=2
     print(f"i = {i}")
-# 输出: 0, 1, 3, 4 (跳过了2)
+# Output: 0, 1, 3, 4 (skipped 2)
 
-# --- break: 完全退出循环 ---
-print("\n--- break 示例 ---")
+# --- break: exit loop completely ---
+print("\n--- break example ---")
 for i in range(5):
     if i == 2:
-        break  # i=2 时退出
+        break  # Exit when i=2
     print(f"i = {i}")
-# 输出: 0, 1 (2及之后都没有)
+# Output: 0, 1 (2 and after not printed)
 
 
 # ============================================================================
-# 3. 数据结构 (Data Structures)
+# 3. Data Structures
 # ============================================================================
 """
-Python 四大数据结构对比:
-┌────────┬────────┬────────┬─────────┬────────────────┐
-│ 类型    │ 可变   │ 有序   │ 可重复  │ 语法           │
-├────────┼────────┼────────┼─────────┼────────────────┤
-│ list   │ ✅     │ ✅     │ ✅      │ [1, 2, 3]      │
-│ tuple  │ ❌     │ ✅     │ ✅      │ (1, 2, 3)      │
-│ set    │ ✅     │ ❌     │ ❌      │ {1, 2, 3}      │
-│ dict   │ ✅     │ ✅     │ key不重复│ {"a": 1}       │
-└────────┴────────┴────────┴─────────┴────────────────┘
+Python's Four Main Data Structures:
+┌────────┬─────────┬─────────┬────────────┬────────────────┐
+│ Type   │ Mutable │ Ordered │ Duplicates │ Syntax         │
+├────────┼─────────┼─────────┼────────────┼────────────────┤
+│ list   │ ✅      │ ✅      │ ✅         │ [1, 2, 3]      │
+│ tuple  │ ❌      │ ✅      │ ✅         │ (1, 2, 3)      │
+│ set    │ ✅      │ ❌      │ ❌         │ {1, 2, 3}      │
+│ dict   │ ✅      │ ✅      │ Unique keys│ {"a": 1}       │
+└────────┴─────────┴─────────┴────────────┴────────────────┘
 """
 
 print("\n" + "=" * 50)
-print("3. 数据结构")
+print("3. Data Structures")
 print("=" * 50)
 
-# --- 列表 (List) ---
-print("\n--- 列表 List ---")
+# --- List ---
+print("\n--- List ---")
 my_list = [1, 2, 3, 4, 5]
-my_list.append(6)        # 添加元素
-my_list.insert(0, 0)     # 在索引0插入
-my_list.remove(3)        # 删除值为3的元素
-popped = my_list.pop()   # 弹出最后一个元素
-my_list.reverse()        # 反转列表
-my_list.sort()           # 排序
+my_list.append(6)        # Add element
+my_list.insert(0, 0)     # Insert at index 0
+my_list.remove(3)        # Remove element with value 3
+popped = my_list.pop()   # Pop last element
+my_list.reverse()        # Reverse list
+my_list.sort()           # Sort list
 print(my_list)
 
-# 列表推导式 (List Comprehension)
+# List Comprehension
 squares = [x**2 for x in range(10)]          # [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
 evens = [x for x in range(20) if x % 2 == 0] # [0, 2, 4, 6, 8, 10, 12, 14, 16, 18]
-print(f"平方数: {squares}")
-print(f"偶数: {evens}")
+print(f"Squares: {squares}")
+print(f"Evens: {evens}")
 
-# --- 元组 (Tuple) ---
-print("\n--- 元组 Tuple ---")
+# --- Tuple ---
+print("\n--- Tuple ---")
 my_tuple = (1, 2, 3)
-# my_tuple[0] = 10  # ❌ 错误！元组不可变
-print(f"元组第一个元素: {my_tuple[0]}")
-print(f"元组长度: {len(my_tuple)}")
+# my_tuple[0] = 10  # ❌ Error! Tuples are immutable
+print(f"First element of tuple: {my_tuple[0]}")
+print(f"Tuple length: {len(my_tuple)}")
 
-# 元组解包
+# Tuple unpacking
 a, b, c = my_tuple
-print(f"解包: a={a}, b={b}, c={c}")
+print(f"Unpacked: a={a}, b={b}, c={c}")
 
-# --- 字典 (Dictionary) ---
-print("\n--- 字典 Dictionary ---")
-my_dict = {"name": "Alice", "age": 25, "city": "Beijing"}
+# --- Dictionary ---
+print("\n--- Dictionary ---")
+my_dict = {"name": "Alice", "age": 25, "city": "New York"}
 
-# 访问
+# Access
 print(my_dict["name"])          # Alice
-print(my_dict.get("email", "N/A"))  # N/A (key不存在时返回默认值)
+print(my_dict.get("email", "N/A"))  # N/A (returns default if key doesn't exist)
 
-# 修改/添加
-my_dict["age"] = 26             # 修改
-my_dict["email"] = "a@b.com"    # 添加
+# Modify/Add
+my_dict["age"] = 26             # Modify
+my_dict["email"] = "a@b.com"    # Add
 
-# 遍历
+# Iterate
 for key, value in my_dict.items():
     print(f"{key}: {value}")
 
-# 字典推导式
+# Dictionary Comprehension
 squared_dict = {x: x**2 for x in range(5)}  # {0: 0, 1: 1, 2: 4, 3: 9, 4: 16}
-print(f"字典推导式: {squared_dict}")
+print(f"Dict comprehension: {squared_dict}")
 
-# --- 集合 (Set) ---
-print("\n--- 集合 Set ---")
-my_set = {1, 2, 3, 3, 4}  # 自动去重 -> {1, 2, 3, 4}
-my_set.add(5)             # 添加元素
-my_set.remove(1)          # 删除元素
-print(f"集合: {my_set}")
+# --- Set ---
+print("\n--- Set ---")
+my_set = {1, 2, 3, 3, 4}  # Auto-deduplicates -> {1, 2, 3, 4}
+my_set.add(5)             # Add element
+my_set.remove(1)          # Remove element
+print(f"Set: {my_set}")
 
 
 # ============================================================================
-# 4. 集合操作 (Set Operations)
+# 4. Set Operations
 # ============================================================================
 """
-集合运算符和方法:
+Set Operators and Methods:
 ┌────────────────────────────┬────────────┬────────────────────┐
-│ 操作                        │ 运算符     │ 方法                │
+│ Operation                  │ Operator   │ Method             │
 ├────────────────────────────┼────────────┼────────────────────┤
-│ 并集 (Union)               │ a | b      │ a.union(b)         │
-│ 交集 (Intersection)        │ a & b      │ a.intersection(b)  │
-│ 差集 (Difference)          │ a - b      │ a.difference(b)    │
-│ 对称差集 (Symmetric Diff)  │ a ^ b      │ a.symmetric_diff.. │
+│ Union                      │ a | b      │ a.union(b)         │
+│ Intersection               │ a & b      │ a.intersection(b)  │
+│ Difference                 │ a - b      │ a.difference(b)    │
+│ Symmetric Difference       │ a ^ b      │ a.symmetric_diff.. │
 └────────────────────────────┴────────────┴────────────────────┘
 
-图示:
+Diagram:
      a = {1, 2, 3, 4}
      b = {3, 4, 5, 6}
      
      ┌───────────────────────────────────┐
-     │        集合 a         集合 b      │
+     │        Set a          Set b       │
      │     ┌───────┐     ┌───────┐      │
      │     │ 1   2 │     │ 5   6 │      │
      │     │   ┌───┼─────┼───┐   │      │
@@ -211,427 +211,427 @@ print(f"集合: {my_set}")
      │     └───────┘     └───────┘      │
      └───────────────────────────────────┘
      
-     交集:    {3, 4}         ← 共同拥有的
-     差集:    {1, 2}         ← a有b没有的
-     对称差:  {1, 2, 5, 6}   ← 只在其中一个集合的
+     Intersection: {3, 4}         ← Common elements
+     Difference:   {1, 2}         ← In a but not in b
+     Symmetric:    {1, 2, 5, 6}   ← In either but not both
 """
 
 print("\n" + "=" * 50)
-print("4. 集合操作")
+print("4. Set Operations")
 print("=" * 50)
 
 a = {1, 2, 3, 4}
 b = {3, 4, 5, 6}
 
-# 交集 (Intersection) - 两个集合共有的元素
-intersection = a.intersection(b)  # 或 a & b
-print(f"交集 a ∩ b: {intersection}")  # {3, 4}
+# Intersection - elements common to both sets
+intersection = a.intersection(b)  # or a & b
+print(f"Intersection a ∩ b: {intersection}")  # {3, 4}
 
-# 并集 (Union) - 两个集合所有元素
-union = a.union(b)  # 或 a | b
-print(f"并集 a ∪ b: {union}")  # {1, 2, 3, 4, 5, 6}
+# Union - all elements from both sets
+union = a.union(b)  # or a | b
+print(f"Union a ∪ b: {union}")  # {1, 2, 3, 4, 5, 6}
 
-# 差集 (Difference) - 在a中但不在b中的元素
-difference = a.difference(b)  # 或 a - b
-print(f"差集 a - b: {difference}")  # {1, 2}
+# Difference - elements in a but not in b
+difference = a.difference(b)  # or a - b
+print(f"Difference a - b: {difference}")  # {1, 2}
 
-# 对称差集 (Symmetric Difference) - 只在一个集合中出现的元素
-symmetric_diff = a.symmetric_difference(b)  # 或 a ^ b
-print(f"对称差集 a △ b: {symmetric_diff}")  # {1, 2, 5, 6}
+# Symmetric Difference - elements in either set but not both
+symmetric_diff = a.symmetric_difference(b)  # or a ^ b
+print(f"Symmetric Difference a △ b: {symmetric_diff}")  # {1, 2, 5, 6}
 
-# 实际应用示例
+# Practical example
 enrolled_students = {"Alice", "Bob", "Charlie", "David"}
 submitted_homework = {"Bob", "David", "Eve"}
 
-# 谁交了作业但没注册?
-print(f"未注册但交了作业: {submitted_homework - enrolled_students}")  # {'Eve'}
+# Who submitted homework but is not enrolled?
+print(f"Not enrolled but submitted: {submitted_homework - enrolled_students}")  # {'Eve'}
 
-# 谁注册了但没交作业?
-print(f"注册但没交作业: {enrolled_students - submitted_homework}")  # {'Alice', 'Charlie'}
+# Who is enrolled but didn't submit homework?
+print(f"Enrolled but didn't submit: {enrolled_students - submitted_homework}")  # {'Alice', 'Charlie'}
 
 
 # ============================================================================
-# 5. 函数 (Functions)
+# 5. Functions
 # ============================================================================
 
 print("\n" + "=" * 50)
-print("5. 函数")
+print("5. Functions")
 print("=" * 50)
 
-# --- 基本函数定义 ---
-def greet(name, greeting="你好"):
-    """带默认参数的函数"""
+# --- Basic function definition ---
+def greet(name, greeting="Hello"):
+    """Function with default parameter"""
     return f"{greeting}, {name}!"
 
-print(greet("Alice"))             # 你好, Alice!
+print(greet("Alice"))             # Hello, Alice!
 print(greet("Bob", "Hi"))         # Hi, Bob!
 
 
-# --- *args: 接收任意数量的位置参数 (打包成元组) ---
-print("\n--- *args 示例 ---")
+# --- *args: accepts any number of positional arguments (packed as tuple) ---
+print("\n--- *args example ---")
 def sum_all(*args):
-    """接收任意数量参数并求和"""
-    print(f"args类型: {type(args)}, 值: {args}")
+    """Accepts any number of arguments and sums them"""
+    print(f"args type: {type(args)}, value: {args}")
     return sum(args)
 
 print(sum_all(1, 2, 3))           # 6
 print(sum_all(1, 2, 3, 4, 5))     # 15
 
 
-# --- **kwargs: 接收任意数量的关键字参数 (打包成字典) ---
-print("\n--- **kwargs 示例 ---")
+# --- **kwargs: accepts any number of keyword arguments (packed as dict) ---
+print("\n--- **kwargs example ---")
 def create_user(**kwargs):
-    """接收任意关键字参数创建用户"""
-    print(f"kwargs类型: {type(kwargs)}, 值: {kwargs}")
+    """Accepts any keyword arguments to create user"""
+    print(f"kwargs type: {type(kwargs)}, value: {kwargs}")
     return kwargs
 
-user = create_user(name="Alice", age=30, city="Beijing")
-print(f"用户信息: {user}")
+user = create_user(name="Alice", age=30, city="New York")
+print(f"User info: {user}")
 
 
-# --- *args 和 **kwargs 混合使用 ---
-print("\n--- 混合使用 ---")
+# --- Mixing *args and **kwargs ---
+print("\n--- Mixed usage ---")
 def mixed_example(required, *args, **kwargs):
-    """三种参数混合"""
-    print(f"必需参数: {required}")
-    print(f"额外位置参数: {args}")
-    print(f"额外关键字参数: {kwargs}")
+    """Three types of parameters mixed"""
+    print(f"Required param: {required}")
+    print(f"Extra positional args: {args}")
+    print(f"Extra keyword args: {kwargs}")
 
-mixed_example("必需", 1, 2, 3, name="Alice", age=30)
+mixed_example("required", 1, 2, 3, name="Alice", age=30)
 
 
-# --- Lambda 匿名函数 ---
-print("\n--- Lambda 函数 ---")
-# 语法: lambda 参数: 表达式
+# --- Lambda (Anonymous Functions) ---
+print("\n--- Lambda functions ---")
+# Syntax: lambda parameters: expression
 square = lambda x: x ** 2
 add = lambda x, y: x + y
 
-print(f"5的平方: {square(5)}")    # 25
-print(f"3 + 4 = {add(3, 4)}")     # 7
+print(f"Square of 5: {square(5)}")    # 25
+print(f"3 + 4 = {add(3, 4)}")         # 7
 
-# Lambda 常与 sorted, map, filter 配合使用
+# Lambda often used with sorted, map, filter
 students = [("Alice", 85), ("Bob", 92), ("Charlie", 78)]
 sorted_by_score = sorted(students, key=lambda x: x[1], reverse=True)
-print(f"按分数排序: {sorted_by_score}")
+print(f"Sorted by score: {sorted_by_score}")
 
 
-# --- 装饰器 (Decorator) ---
-print("\n--- 装饰器 ---")
+# --- Decorator ---
+print("\n--- Decorators ---")
 import time
 
 def timer(func):
-    """计时装饰器"""
+    """Timer decorator"""
     def wrapper(*args, **kwargs):
         start = time.time()
         result = func(*args, **kwargs)
         end = time.time()
-        print(f"{func.__name__} 执行时间: {end - start:.4f}秒")
+        print(f"{func.__name__} execution time: {end - start:.4f} seconds")
         return result
     return wrapper
 
 @timer
 def slow_function():
-    """模拟耗时操作"""
+    """Simulates time-consuming operation"""
     time.sleep(0.1)
-    return "完成"
+    return "Done"
 
 result = slow_function()
 
 
 # ============================================================================
-# 6. 内存管理 (Memory Management)
+# 6. Memory Management
 # ============================================================================
 """
-6.1 迭代器 vs 列表 内存占用
+6.1 Iterator vs List Memory Usage
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-函数             返回类型      内存占用        特点
+Function        Return Type   Memory Usage    Feature
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-map()           迭代器        ~48 bytes       惰性求值
-filter()        迭代器        ~48 bytes       惰性求值
-zip()           迭代器        ~48 bytes       惰性求值
-enumerate()     迭代器        ~48 bytes       惰性求值
-range()         range对象     ~48 bytes       惰性求值
-list()          列表          8n bytes        立即存储所有元素
+map()           Iterator      ~48 bytes       Lazy evaluation
+filter()        Iterator      ~48 bytes       Lazy evaluation
+zip()           Iterator      ~48 bytes       Lazy evaluation
+enumerate()     Iterator      ~48 bytes       Lazy evaluation
+range()         Range object  ~48 bytes       Lazy evaluation
+list()          List          8n bytes        Stores all elements
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-6.2 赋值 vs 浅拷贝 vs 深拷贝
+6.2 Assignment vs Shallow Copy vs Deep Copy
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-操作          语法                  新对象?   嵌套对象独立?   内存占用
+Operation     Syntax                New Object?  Nested Independent?  Memory
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-赋值 (=)     b = a                 ❌ 同对象  ❌              最小
-浅拷贝       b = a.copy()          ✅ 新对象  ❌ 共享嵌套     中等
-深拷贝       b = copy.deepcopy(a)  ✅ 新对象  ✅ 完全独立     最大
+Assignment    b = a                 ❌ Same      ❌                   Min
+Shallow Copy  b = a.copy()          ✅ New       ❌ Shared nested     Medium
+Deep Copy     b = copy.deepcopy(a)  ✅ New       ✅ Fully independent Max
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-图示对比:
+Diagram:
 ═══════════════════════════════════════════════════════════════
-赋值 (b = a):   a ──┬──► [1, [2, 3]]      两个名字，同一个对象
+Assignment:     a ──┬──► [1, [2, 3]]      Two names, same object
                 b ──┘
 
-浅拷贝:         a ────► [1, ─┬─► [2, 3]]  外层新建，内层共享
+Shallow Copy:   a ────► [1, ─┬─► [2, 3]]  Outer new, inner shared
                 b ────► [1, ─┘         ]
 
-深拷贝:         a ────► [1, ────► [2, 3]] 完全独立的副本
+Deep Copy:      a ────► [1, ────► [2, 3]] Completely independent
                 b ────► [1, ────► [2, 3]]
 ═══════════════════════════════════════════════════════════════
 """
 
 print("\n" + "=" * 50)
-print("6. 内存管理")
+print("6. Memory Management")
 print("=" * 50)
 
 import sys
 import copy
 
-# --- 迭代器 vs 列表 ---
-print("\n--- 迭代器 vs 列表 内存对比 ---")
+# --- Iterator vs List ---
+print("\n--- Iterator vs List memory comparison ---")
 
-# 创建大量数据
-big_list = list(range(1000000))        # 立即创建100万个元素
-big_range = range(1000000)             # 只是一个range对象
-big_map = map(lambda x: x*2, range(1000000))  # 只是一个迭代器
+# Create large data
+big_list = list(range(1000000))        # Immediately creates 1 million elements
+big_range = range(1000000)             # Just a range object
+big_map = map(lambda x: x*2, range(1000000))  # Just an iterator
 
-print(f"list 内存: {sys.getsizeof(big_list):,} bytes")  # ~8,000,000+ bytes
-print(f"range 内存: {sys.getsizeof(big_range)} bytes")   # ~48 bytes
-print(f"map 内存: {sys.getsizeof(big_map)} bytes")       # ~48 bytes
+print(f"list memory: {sys.getsizeof(big_list):,} bytes")  # ~8,000,000+ bytes
+print(f"range memory: {sys.getsizeof(big_range)} bytes")   # ~48 bytes
+print(f"map memory: {sys.getsizeof(big_map)} bytes")       # ~48 bytes
 
 
-# --- 赋值 vs 浅拷贝 vs 深拷贝 ---
-print("\n--- 赋值 vs 浅拷贝 vs 深拷贝 ---")
+# --- Assignment vs Shallow Copy vs Deep Copy ---
+print("\n--- Assignment vs Shallow Copy vs Deep Copy ---")
 
-# 原始列表（包含嵌套列表）
+# Original list (contains nested list)
 original = [1, 2, [3, 4]]
 
-# 1. 赋值 - 只是创建引用，指向同一个对象
+# 1. Assignment - just creates a reference, points to same object
 assigned = original
-print(f"赋值后 id 相同? {id(original) == id(assigned)}")  # True
+print(f"Same id after assignment? {id(original) == id(assigned)}")  # True
 
-# 2. 浅拷贝 - 创建新对象，但嵌套对象仍共享
-shallow = original.copy()  # 或 list(original) 或 original[:]
-print(f"浅拷贝 id 相同? {id(original) == id(shallow)}")   # False
-print(f"嵌套列表 id 相同? {id(original[2]) == id(shallow[2])}")  # True!
+# 2. Shallow copy - creates new object, but nested objects are still shared
+shallow = original.copy()  # or list(original) or original[:]
+print(f"Same id shallow copy? {id(original) == id(shallow)}")   # False
+print(f"Same nested list id? {id(original[2]) == id(shallow[2])}")  # True!
 
-# 3. 深拷贝 - 完全独立的副本
+# 3. Deep copy - completely independent copy
 deep = copy.deepcopy(original)
-print(f"深拷贝 id 相同? {id(original) == id(deep)}")      # False
-print(f"嵌套列表 id 相同? {id(original[2]) == id(deep[2])}")  # False!
+print(f"Same id deep copy? {id(original) == id(deep)}")      # False
+print(f"Same nested list id? {id(original[2]) == id(deep[2])}")  # False!
 
-# 演示修改的影响
-print("\n修改嵌套列表后的影响:")
+# Demonstrate modification effects
+print("\nEffect after modifying nested list:")
 original[2].append(5)
 print(f"original: {original}")  # [1, 2, [3, 4, 5]]
-print(f"assigned: {assigned}")  # [1, 2, [3, 4, 5]] - 受影响!
-print(f"shallow:  {shallow}")   # [1, 2, [3, 4, 5]] - 受影响!
-print(f"deep:     {deep}")      # [1, 2, [3, 4]]    - 不受影响!
+print(f"assigned: {assigned}")  # [1, 2, [3, 4, 5]] - Affected!
+print(f"shallow:  {shallow}")   # [1, 2, [3, 4, 5]] - Affected!
+print(f"deep:     {deep}")      # [1, 2, [3, 4]]    - Not affected!
 
 
 # ============================================================================
-# 7. 文件操作 (File Operations)
+# 7. File Operations
 # ============================================================================
 
 print("\n" + "=" * 50)
-print("7. 文件操作")
+print("7. File Operations")
 print("=" * 50)
 
-# --- 基本文件读写 ---
-# 写入文件
+# --- Basic file read/write ---
+# Write file
 with open("example.txt", "w", encoding="utf-8") as f:
     f.write("Hello, Python!\n")
-    f.write("这是第二行\n")
+    f.write("This is line two\n")
 
-# 读取文件
+# Read file
 with open("example.txt", "r", encoding="utf-8") as f:
     content = f.read()
     print(content)
 
-# 逐行读取
+# Read line by line
 with open("example.txt", "r", encoding="utf-8") as f:
     for line in f:
         print(line.strip())
 
-# --- CSV 文件 ---
+# --- CSV file ---
 import csv
 
-# 写入 CSV
+# Write CSV
 data = [
-    ["姓名", "年龄", "城市"],
-    ["Alice", 25, "Beijing"],
-    ["Bob", 30, "Shanghai"]
+    ["Name", "Age", "City"],
+    ["Alice", 25, "New York"],
+    ["Bob", 30, "Los Angeles"]
 ]
 with open("data.csv", "w", newline="", encoding="utf-8") as f:
     writer = csv.writer(f)
     writer.writerows(data)
 
-# 读取 CSV
+# Read CSV
 with open("data.csv", "r", encoding="utf-8") as f:
     reader = csv.reader(f)
     for row in reader:
         print(row)
 
-# --- JSON 文件 ---
+# --- JSON file ---
 import json
 
-# 写入 JSON
+# Write JSON
 user_data = {"name": "Alice", "age": 25, "hobbies": ["reading", "coding"]}
 with open("user.json", "w", encoding="utf-8") as f:
     json.dump(user_data, f, ensure_ascii=False, indent=2)
 
-# 读取 JSON
+# Read JSON
 with open("user.json", "r", encoding="utf-8") as f:
     loaded_data = json.load(f)
     print(loaded_data)
 
 
 # ============================================================================
-# 8. 异常处理 (Exception Handling)
+# 8. Exception Handling
 # ============================================================================
 """
-Python 异常处理结构:
+Python Exception Handling Structure:
 ┌─────────────────────────────────────────────┐
 │  try:                                       │
-│      可能出错的代码                          │
+│      Code that might raise an exception     │
 │  except ExceptionType as e:                 │
-│      处理特定异常                            │
+│      Handle specific exception              │
 │  except Exception as e:                     │
-│      处理其他异常                            │
+│      Handle other exceptions                │
 │  else:                                      │
-│      没有异常时执行                          │
+│      Runs if no exception                   │
 │  finally:                                   │
-│      无论如何都执行（清理资源）               │
+│      Always runs (cleanup resources)        │
 └─────────────────────────────────────────────┘
 """
 
 print("\n" + "=" * 50)
-print("8. 异常处理")
+print("8. Exception Handling")
 print("=" * 50)
 
-# 基本异常处理
+# Basic exception handling
 def divide(a, b):
     try:
         result = a / b
     except ZeroDivisionError:
-        print("错误: 除数不能为零!")
+        print("Error: Cannot divide by zero!")
         return None
     except TypeError as e:
-        print(f"类型错误: {e}")
+        print(f"Type error: {e}")
         return None
     else:
-        print("计算成功")
+        print("Calculation successful")
         return result
     finally:
-        print("清理工作完成")
+        print("Cleanup complete")
 
-print(divide(10, 2))   # 正常: 5.0
+print(divide(10, 2))   # Normal: 5.0
 print(divide(10, 0))   # ZeroDivisionError
 print(divide("10", 2)) # TypeError
 
-# 主动抛出异常
+# Raising exceptions
 def validate_age(age):
     if age < 0:
-        raise ValueError("年龄不能为负数")
+        raise ValueError("Age cannot be negative")
     if age > 150:
-        raise ValueError("年龄不合理")
+        raise ValueError("Age is unreasonable")
     return True
 
 try:
     validate_age(-5)
 except ValueError as e:
-    print(f"验证失败: {e}")
+    print(f"Validation failed: {e}")
 
 
 # ============================================================================
-# 9. 模块导入 (Modules)
+# 9. Module Imports
 # ============================================================================
 """
-导入方式:
+Import Methods:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-import math              # 导入整个模块
-from math import sqrt    # 导入特定函数
-from math import *       # 导入所有（不推荐）
-import numpy as np       # 导入并起别名
+import math              # Import entire module
+from math import sqrt    # Import specific function
+from math import *       # Import all (not recommended)
+import numpy as np       # Import with alias
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-常用标准库:
+Common Standard Libraries:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-模块        用途                    示例
+Module      Purpose                 Example
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-os          操作系统接口            os.path, os.listdir()
-sys         系统相关               sys.argv, sys.path
-datetime    日期时间               datetime.now()
-json        JSON处理               json.load(), json.dump()
-re          正则表达式             re.match(), re.search()
-random      随机数                 random.randint()
-collections 高级数据结构           Counter, defaultdict
-itertools   迭代器工具             chain, combinations
+os          OS interface            os.path, os.listdir()
+sys         System related          sys.argv, sys.path
+datetime    Date and time           datetime.now()
+json        JSON handling           json.load(), json.dump()
+re          Regular expressions     re.match(), re.search()
+random      Random numbers          random.randint()
+collections Advanced data structs   Counter, defaultdict
+itertools   Iterator tools          chain, combinations
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 """
 
 print("\n" + "=" * 50)
-print("9. 模块导入")
+print("9. Module Imports")
 print("=" * 50)
 
-# 常用模块示例
+# Common module examples
 import os
 import datetime
 import random
 from collections import Counter
 
-# os 模块
-print(f"当前目录: {os.getcwd()}")
+# os module
+print(f"Current directory: {os.getcwd()}")
 
-# datetime 模块
+# datetime module
 now = datetime.datetime.now()
-print(f"当前时间: {now.strftime('%Y-%m-%d %H:%M:%S')}")
+print(f"Current time: {now.strftime('%Y-%m-%d %H:%M:%S')}")
 
-# random 模块
-print(f"随机数 (1-10): {random.randint(1, 10)}")
+# random module
+print(f"Random number (1-10): {random.randint(1, 10)}")
 
 # collections.Counter
 words = ["apple", "banana", "apple", "cherry", "banana", "apple"]
 word_count = Counter(words)
-print(f"词频统计: {word_count}")
-print(f"最常见的2个: {word_count.most_common(2)}")
+print(f"Word count: {word_count}")
+print(f"Most common 2: {word_count.most_common(2)}")
 
 
 # ============================================================================
-# 10. 递归 (Recursion)
+# 10. Recursion
 # ============================================================================
 
 print("\n" + "=" * 50)
-print("10. 递归")
+print("10. Recursion")
 print("=" * 50)
 
-# 阶乘
+# Factorial
 def factorial(n):
-    """计算 n! (递归实现)"""
+    """Calculate n! (recursive implementation)"""
     if n <= 1:
         return 1
     return n * factorial(n - 1)
 
 print(f"5! = {factorial(5)}")  # 120
 
-# 斐波那契数列
+# Fibonacci sequence
 def fibonacci(n):
-    """计算第n个斐波那契数"""
+    """Calculate the nth Fibonacci number"""
     if n <= 1:
         return n
     return fibonacci(n-1) + fibonacci(n-2)
 
-print(f"斐波那契前10项: {[fibonacci(i) for i in range(10)]}")
+print(f"First 10 Fibonacci: {[fibonacci(i) for i in range(10)]}")
 
 
 # ============================================================================
-# 清理临时文件
+# Cleanup temporary files
 # ============================================================================
 import os
 
-# 删除示例中创建的临时文件
+# Delete temporary files created in examples
 for f in ["example.txt", "data.csv", "user.json"]:
     if os.path.exists(f):
         os.remove(f)
-        print(f"已清理: {f}")
+        print(f"Cleaned up: {f}")
 
 
 print("\n" + "=" * 50)
-print("学习笔记结束 - Happy Coding! 🐍")
+print("End of Learning Notes - Happy Coding! 🐍")
 print("=" * 50)
