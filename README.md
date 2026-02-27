@@ -1,93 +1,93 @@
-# Python 学习笔记 (Python Learning Notes)
+# Python Learning Notes
 
 [![Python Version](https://img.shields.io/badge/Python-3.x-blue.svg)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-## 📚 简介
+## 📚 Introduction
 
-这是一份完整的 Python 基础学习笔记，包含了从入门到进阶的核心概念，配有详细的中文注释和可运行的代码示例。
+A comprehensive Python learning guide covering core concepts from beginner to intermediate level, with detailed comments and runnable code examples.
 
-## 📋 目录
+## 📋 Table of Contents
 
-| 章节 | 主题 | 内容 |
-|------|------|------|
-| 1 | 循环结构 | for, while, range(), enumerate() |
-| 2 | 控制语句 | pass, continue, break 对比 |
-| 3 | 数据结构 | list, tuple, dict, set |
-| 4 | 集合操作 | 交集、并集、差集、对称差集 |
-| 5 | 函数 | *args, **kwargs, lambda, 装饰器 |
-| 6 | 内存管理 | 迭代器、浅拷贝、深拷贝 |
-| 7 | 文件操作 | 文本、CSV、JSON |
-| 8 | 异常处理 | try/except/finally |
-| 9 | 模块导入 | 标准库使用 |
-| 10 | 递归 | 阶乘、斐波那契 |
+| Chapter | Topic | Content |
+|---------|-------|---------|
+| 1 | Loops | for, while, range(), enumerate() |
+| 2 | Control Statements | pass, continue, break comparison |
+| 3 | Data Structures | list, tuple, dict, set |
+| 4 | Set Operations | intersection, union, difference, symmetric difference |
+| 5 | Functions | *args, **kwargs, lambda, decorators |
+| 6 | Memory Management | iterators, shallow copy, deep copy |
+| 7 | File Operations | text, CSV, JSON |
+| 8 | Exception Handling | try/except/finally |
+| 9 | Module Imports | standard library usage |
+| 10 | Recursion | factorial, Fibonacci |
 
-## 🚀 快速开始
+## 🚀 Quick Start
 
 ```bash
-# 克隆仓库
-git clone https://github.com/your-username/python-learning-notes.git
+# Clone the repository
+git clone https://github.com/hahAI111/python-dataengineer-tutorials.git
 
-# 进入目录
-cd python-learning-notes
+# Enter the directory
+cd python-dataengineer-tutorials
 
-# 运行学习笔记
+# Run the learning notes
 python python_learning_notes.py
 ```
 
-## 📝 核心知识点预览
+## 📝 Key Concepts Preview
 
-### 控制语句对比
+### Control Statements Comparison
 
-| 关键字 | 作用 | 循环继续? |
-|--------|------|-----------|
-| `pass` | 占位符，什么都不做 | ✅ 继续 |
-| `continue` | 跳过本次迭代 | ✅ 下一次 |
-| `break` | 退出循环 | ❌ 退出 |
+| Keyword | Function | Loop Continues? |
+|---------|----------|-----------------|
+| `pass` | Placeholder, does nothing | ✅ Yes |
+| `continue` | Skip current iteration | ✅ Next iteration |
+| `break` | Exit loop | ❌ Exit |
 
-### 数据结构对比
+### Data Structures Comparison
 
-| 类型 | 可变 | 有序 | 可重复 | 语法 |
-|------|------|------|--------|------|
+| Type | Mutable | Ordered | Duplicates | Syntax |
+|------|---------|---------|------------|--------|
 | list | ✅ | ✅ | ✅ | `[1, 2, 3]` |
 | tuple | ❌ | ✅ | ✅ | `(1, 2, 3)` |
 | set | ✅ | ❌ | ❌ | `{1, 2, 3}` |
-| dict | ✅ | ✅ | key不重复 | `{"a": 1}` |
+| dict | ✅ | ✅ | Unique keys | `{"a": 1}` |
 
-### 浅拷贝 vs 深拷贝
+### Shallow Copy vs Deep Copy
 
-| 操作 | 语法 | 新对象? | 嵌套独立? |
-|------|------|---------|-----------|
-| 赋值 | `b = a` | ❌ | ❌ |
-| 浅拷贝 | `b = a.copy()` | ✅ | ❌ |
-| 深拷贝 | `b = copy.deepcopy(a)` | ✅ | ✅ |
+| Operation | Syntax | New Object? | Nested Independent? |
+|-----------|--------|-------------|---------------------|
+| Assignment | `b = a` | ❌ | ❌ |
+| Shallow Copy | `b = a.copy()` | ✅ | ❌ |
+| Deep Copy | `b = copy.deepcopy(a)` | ✅ | ✅ |
 
-## 📂 文件结构
+## 📂 File Structure
 
 ```
-python-learning-notes/
-├── README.md                    # 项目说明
-├── python_learning_notes.py     # 主学习笔记文件
-└── LICENSE                      # 许可证
+python-dataengineer-tutorials/
+├── README.md                    # Project documentation
+├── python_learning_notes.py     # Main learning notes file
+└── LICENSE                      # License
 ```
 
-## 🎯 适合人群
+## 🎯 Target Audience
 
-- Python 初学者
-- 需要复习 Python 基础的开发者
-- 准备 Python 面试的同学
+- Python beginners
+- Developers who need to review Python fundamentals
+- Students preparing for Python interviews
 
-## 📖 使用建议
+## 📖 Usage Tips
 
-1. **逐章学习**: 按顺序运行代码，理解每个概念
-2. **动手实践**: 修改代码参数，观察输出变化
-3. **做笔记**: 将自己的理解添加到注释中
-4. **练习**: 尝试编写类似的代码
+1. **Learn step by step**: Run code in order, understand each concept
+2. **Hands-on practice**: Modify code parameters, observe output changes
+3. **Take notes**: Add your own understanding to the comments
+4. **Practice**: Try writing similar code yourself
 
-## 🤝 贡献
+## 🤝 Contributing
 
-欢迎 Issue 和 Pull Request！
+Issues and Pull Requests are welcome!
 
 ## 📜 License
 
-MIT License - 自由使用和修改
+MIT License - Free to use and modify
